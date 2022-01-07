@@ -1,8 +1,9 @@
 import React, { useReducer } from "react";
+import { Link } from "react-router-dom";
 
 const Cart = (props) => {
   const cart = props.cart;
-  console.log(cart);
+  // console.log(cart);
   //   const totalPrice = cart.reduce((total, product) => total + product.price, 0);
   let total = 0;
   cart.forEach((product) => (total += product.price));
@@ -31,6 +32,10 @@ const Cart = (props) => {
         <small>Tax + VAT: {formateNumber(tax)}</small>
       </p>
       <p>Total Price: {formateNumber(total + shipping + tax)}</p>
+      <br />
+      <Link to="/review">
+        <button className="mainButton">Review Order</button>
+      </Link>
     </div>
   );
 };
