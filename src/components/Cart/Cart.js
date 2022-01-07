@@ -1,12 +1,12 @@
-import React, { useReducer } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 
 const Cart = (props) => {
   const cart = props.cart;
   // console.log(cart);
   //   const totalPrice = cart.reduce((total, product) => total + product.price, 0);
   let total = 0;
-  cart.forEach((product) => (total += product.price));
+  cart.forEach((product) => (total += product.price * product.quantity));
+
   let shipping = 0;
   if (total > 35) {
     shipping = 0;
@@ -15,6 +15,7 @@ const Cart = (props) => {
   } else if (total > 0) {
     shipping = 12.99;
   }
+  console.log(total);
   const tax = total * 0.1;
 
   const formateNumber = (num) => {
@@ -33,9 +34,7 @@ const Cart = (props) => {
       </p>
       <p>Total Price: {formateNumber(total + shipping + tax)}</p>
       <br />
-      <Link to="/review">
-        <button className="mainButton">Review Order</button>
-      </Link>
+      {props.children}
     </div>
   );
 };
