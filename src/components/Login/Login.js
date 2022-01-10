@@ -27,18 +27,18 @@ function Login() {
 
   const googleSignIn = () => {
     handleGoogleSignIn().then((res) => {
-      handleResponse(true);
+      handleResponse(res, true);
     });
   };
 
   const signOut = () => {
     handleSignOut().then((res) => {
-      handleResponse(false);
+      handleResponse(res, false);
     });
   };
   const fbSignIn = () => {
     handleFbSignIn().then((res) => {
-      handleResponse(true);
+      handleResponse(res, true);
     });
   };
   const handleResponse = (res, redirect) => {
@@ -68,14 +68,14 @@ function Login() {
     if (newUser && user.email && user.password) {
       createUserWithEmailAndPassword(user.name, user.email, user.password).then(
         (res) => {
-          handleResponse(true);
+          handleResponse(res, true);
         }
       );
     }
 
     if (!newUser && user.email && user.password) {
       signInWithEmailAndPassword(user.email, user.password).then((res) => {
-        handleResponse(true);
+        handleResponse(res, true);
       });
     }
     e.preventDefault();

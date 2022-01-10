@@ -5,7 +5,7 @@ const Cart = (props) => {
   // console.log(cart);
   //   const totalPrice = cart.reduce((total, product) => total + product.price, 0);
   let total = 0;
-  cart.forEach((product) => (total += product.price * product.quantity));
+  cart.forEach((product) => (total += product.price * product.quantity || 1));
 
   let shipping = 0;
   if (total > 35) {
